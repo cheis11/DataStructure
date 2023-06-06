@@ -1,0 +1,38 @@
+package q2;
+
+import java.util.Scanner;
+//숫자 N을 입력 받았을 때, 높이가 N인 직각삼각형을 출력하세요
+public class Triangle {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("N : ");
+		printTriangle(sc.nextInt());
+		
+		System.out.print("N : ");
+		printInverseTriangle(sc.nextInt());
+		
+		sc.close();
+	}
+	
+	public static void printTriangle(int n) {
+		//높이가 n인 직각 삼각형을 출력
+		for(int e=0;e<n;e++) {
+			for(int i=0;i<=e;i++) {
+				System.out.print("*");
+			}
+			System.out.print("\n");
+		}
+	}
+	
+	
+	public static void printInverseTriangle(int n) {
+		//높이가 n인 직각 삼각형을 역순으로 출력
+		for(int e=1;e<=n;e++) {
+			for(int i=n;i>=e;i--) {
+				System.out.print("*");
+			}
+			System.out.print("\n");
+		}
+	}
+}
