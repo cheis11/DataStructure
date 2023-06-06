@@ -1,0 +1,47 @@
+package q1;
+
+import java.util.Scanner;
+//숫자 N을 입력받아서 1~N까지 숫자의 합을 반환하는 함수를 구현하세요.
+public class Sum {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("N : ");
+		System.out.println(sum(sc.nextInt()));
+		
+		System.out.print("N : ");
+		System.out.println(sum(sc.nextInt(), 3));
+		
+		sc.close();
+		
+	}
+
+	
+	public static int sum(int n) {
+		//확인 문제
+		//1~n까지의 숫자를 전부 더해서 반환
+		//Ex) n=10 -> 55 반환
+		int a=0;
+		for(int i=1;i<=n;i++) {
+			a+=i;
+		}
+		return a;
+	}
+	
+	
+
+	public static int sum(int n, int except) {
+		//과제
+		//1~n 까지의 숫자중에 except 숫자의 배수를 제외하고, 전부 더해서 반환
+		//Ex) n=10, except = 3 -> 37 반환 (3,6,9 제외하고 더한값)
+		int num=0;
+		int exc=0;
+		for(int i=1;i<=n;i++) {
+			num+=i;
+			if(except*i<n) {
+				exc=except*i+exc;
+			}
+		}
+		return num-exc;
+	}
+}
