@@ -1,0 +1,106 @@
+package library;
+
+public class Library {
+	public static final int BOOK_DEFAULT_MAX=10;
+	public static final int ARRAY_INCREASE_RATE=2;
+	
+	private Book[] book_list;
+	private int num_of_book;
+	
+	public Library() {
+		book_list=new Book[BOOK_DEFAULT_MAX];
+		num_of_book=0;
+	}
+	public void add_book(String name, String writer, int ID) {
+		if(num_of_book==book_list.length) {
+			newBookList(book_list);
+			book_list[num_of_book]=new Book(name,writer,ID);
+			this.num_of_book=num_of_book+1;
+		}else {
+			book_list[num_of_book]=new Book(name,writer,ID);
+			this.num_of_book=num_of_book+1;
+		}
+	}
+	public void add_book(Book newBook) {
+		if(num_of_book==book_list.length) {
+			newBookList(book_list);
+			book_list[num_of_book]=newBook;
+			this.num_of_book=num_of_book+1;
+		}else {
+			book_list[num_of_book]=newBook;
+			this.num_of_book=num_of_book+1;
+		}
+	}
+	public void print_book() {
+		for(int i=0;i<num_of_book;i++) {
+			book_list[i].print_info();
+		}
+	}
+	private Book[] newBookList(Book[] old_book_list) {
+		Book[] newBookList=new Book[old_book_list.length+ARRAY_INCREASE_RATE];
+		for(int i=0;i<old_book_list.length;i++) {
+			newBookList[i]=old_book_list[i];
+		}
+		return newBookList;
+	}
+	public Book find_book(String name) {
+		System.out.println("Book Name : "+name);
+		Book a = new Book(name, null, 0);
+		for(int i=0;i<num_of_book;i++) 
+			if(book_list[i].get_name()==name) 
+				a=book_list[i];
+		return a;
+		
+	}
+	public Book find_book(int ID) {
+		System.out.println("Book ID : "+ID);
+		Book a = new Book(null, null, ID);
+		for(int i=0;i<num_of_book;i++) 
+			if(book_list[i].get_ID()==ID) 
+				a=book_list[i];
+		return a;
+		
+	}
+	public Library find_writer(String writer) {
+		System.out.println("Book Writer : "+writer);
+		Library libr = new Library();
+		for(int i=0;i<num_of_book;i++) {
+			if(book_list[i].get_writer()==writer) {
+				libr.add_book(book_list[i]);
+			}
+		}
+		return libr;
+	}
+	public void sort_ID() {
+		Book temp;
+		for(int i=0;i<num_of_book;i++) {
+			for(int e=0;e<i;e++) {
+				if(book_list[i].get_ID()<book_list[e].get_ID()) {
+					temp=book_list[i];
+					book_list[i]=book_list[e];
+					book_list[e]=temp;
+				}
+			}
+		}
+	}
+	public void reverse_book_list() {
+		Book temp;
+		for(int i=0;i<num_of_book/2;i++) {
+			temp=book_list[i];
+			book_list[i]=book_list[num_of_book-i-1];
+			book_list[num_of_book-i-1]=temp;
+		}
+	}
+	public void changeBookName(String oldName, String newName) {
+		find_book(oldName).change_name(newName);
+	}
+	public void changeBookID(int oldID, int newID) {
+		find_book(oldID).change_ID(newID);
+	}
+	public void changeBookWriter(String oldWriter, String newWriter) {
+		for(int i=0; i<num_of_book; i++)
+			if(book_list[i].get_writer().equals(oldWriter)) 
+				book_list[i].change_writer(newWriter);
+		System.out.println("Book writer : "+newWriter);
+	}
+}
