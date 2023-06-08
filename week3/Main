@@ -1,0 +1,30 @@
+package library;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Library lib = new Library();
+		lib.add_book("Harry Potter Chamber of Secrets","JK Rowling", 10110100);
+		lib.add_book("The Da Vinci Code","Dane brown", 10110011);
+		lib.add_book("Harry Potter and the Deathly Hallows","JK Rowling", 10110101);
+		lib.add_book("The little prince","Saint-Exupery", 10110010);
+		lib.print_book();
+		
+		lib.find_book("The little prince").print_info();
+		
+		lib.find_book(10110101).print_info();
+		
+		lib.find_writer("JK Rowling").print_book();
+	
+		lib.sort_ID();
+		lib.reverse_book_list();
+		lib.print_book();
+		
+		lib.changeBookName("The little prince", "The adult prince");
+		
+		lib.changeBookID(10110011, 10000000);
+		
+		lib.changeBookWriter("JK Rowling", "Rowling");
+		lib.print_book();
+	}
+}
