@@ -1,0 +1,26 @@
+package recursion;
+
+public class Factorial {
+
+	public static void main(String[] args) {
+		System.out.println(factorial1(5));
+		System.out.println(factorial2(5));
+
+	}
+	
+	public static int factorial1(int number) {//재귀 사용
+		int a = 0;
+		if(number<=1) 
+			return 1;
+		a=factorial1(number-1)*number;
+		return a;
+	}
+	public static int factorial2(int number) {//반복문 사용
+		int a=1;
+		for(int i = 1; i <= number; i++) {
+			a*=i;
+		}
+		return a;
+	}
+
+}
